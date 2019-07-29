@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        const rootElement = document.getElementById('root');
+        const Message = (props) => <div>{props.children}</div>
+        const element = (
+            <div className="container">
+                <Message>
+                    Hello world
+                    <Message>Goodbye world</Message>
+                </Message>
+            </div>
+            // <div className="container">
+            //     {React.createElement(message, {msg: 'hello world'})}
+            //     {React.createElement(message, {msg: 'goodbye world'})}
+            // </div>
+        );
+        ReactDOM.render(element, rootElement)
+
+
+        // const rootElement = document.getElementById('root');
+        // const message = (props) => <div>{props.msg}</div>
+        // const element = (
+        //     <div className="container">
+        //         {message({msg: 'hello world'})}
+        //         {message({msg: 'goodbye'})}
+        //     </div>
+        // );
+        // ReactDOM.render(element, rootElement)
+    </script>
+</body>
+</html>
