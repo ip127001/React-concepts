@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            border: 1px solid #333;
+        }
+        .box--large {
+            width: 180px;
+            height: 180px;
+        }
+        .box--medium {
+            width: 120px;
+            height: 120px;
+        }
+        .box--small {
+            width: 60px;
+            height: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        // const element = (
+        //     <div className="box box--small" style={{paddingLeft: 20}}>box</div>
+        // )
+
+
+        // const props = {
+        //     className: 'box box--small',
+        //     style: {paddingLeft: 20}
+        // }
+        // const element = <div {...props}>box</div>
+        
+        
+        function Box({style, size, className = '', ...rest}) {
+            const sizeClassName = size ? `box--${size}` : '';
+            return (
+                <div 
+                    className={`box ${className} ${sizeClassName}`}
+                    style={{paddingLeft: 20, ...style}}
+                    {...rest} />
+            )
+        }
+
+        const element = (
+            <div>
+                <Box size="small"
+                            style={{backgroundColor: 'lightblue'}}
+                        >box</Box>
+                <Box size="medium"
+                    style={{backgroundColor: 'pink'}}
+                >box</Box>
+
+                <Box size="large"
+                    style={{backgroundColor: 'orange'}}
+                >box</Box>
+            </div>
+        )
+        ReactDOM.render(element, document.getElementById('root'))
+    </script>
+</body>
+</html>
+
