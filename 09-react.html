@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16.3.1/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.3.1/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+    <script src="https://unpkg.com/prop-types@15.6.1/prop-types.js"></script>
+
+    <script type="text/babel">
+
+    class StopWatch extends React.Component {
+        state = {lapse: 0, running: false}
+        
+        handleRunClick = () => {
+            this.setState(state => {
+                if(state.running) {
+                    clearInterval(this.timer)
+                } else {
+                    const startTime = Date.now() - this.state.lapse;
+                    this.timer =  setInterval(() => {
+                        this.setState({
+                            lapse: Date.now() - startTime
+                        })
+                    }, 
+                    () => {
+                        console.log()
+                    });
+                } 
+                return {running: !state.running}
+            })
+        }
+
+        handleClearClick = () => {
+            clearInterval(this.timer)
+            this.setState({lapse: 0, running: false})
+        }
+
+        render() {
+            return (
+                <div>
+                    <label>{this.state.lapse}ms</label>
+
+                    <button onClick={this.handleRunClick}>
+                        {this.state.running ? 'Stop' : 'Start'}</button>
+
+                    <button onClick={this.handleClearClick}>
+                        Clear</button>
+                </div>
+            )
+        }
+
+    }
+
+    const element = <StopWatch />
+
+    ReactDOM.render(
+        element,
+        document.getElementById('root')
+    )
+
+    </script>
+
+</body>
+</html>
